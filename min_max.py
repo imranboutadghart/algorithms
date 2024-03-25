@@ -48,6 +48,6 @@ for i in range(9):
 		board[min_max(board, True)] = 'x'
 	else:
 		board[min_max(board, False)] = 'o'
-	printboard(board)
 	if won(board, 'x') or won(board, 'o'):
 		break
+printboard(board)

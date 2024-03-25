@@ -9,7 +9,7 @@ graph = {
 
 # print("|cp: ", child_parent, "|c: ", child, "|sub: ", subchild, "|cc: ", child_cost, "|sc:", graph[child][subchild],\
 # "|total: ", child_cost + graph[child][subchild], "|visited:", visited) ///debugging
-def ucs(graph, start, end):
+def Astar(graph, start, end):
 	if start == end:
 		return [start], []
 	current = start
@@ -39,5 +39,5 @@ def ucs(graph, start, end):
 		current = visited[current][1]
 	return path[::-1], list(visited.keys())
 
-path, visited = ucs(graph, 'A', 'F')
-print(path, visited)
+path, visited = Astar(graph, 'A', 'F')
+print("the path found: ", path, "the nodes visited: ", visited)

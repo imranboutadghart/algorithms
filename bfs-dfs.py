@@ -8,6 +8,7 @@ graph = {
   "C": ["G"],  
 }
 
+#this is how i implemented BFS
 def bfs(graph, start, end):
 	if start == end:
 		return [start], []
@@ -32,6 +33,7 @@ def bfs(graph, start, end):
 				explored.extend(child)
 	return [], visited
 
+#this is how i implemented DFS
 def dfs(graph, start, end):
 	if start == end:
 		return [start], []
@@ -57,6 +59,7 @@ def dfs(graph, start, end):
 	return visited
 
 
+#this is the tests for BFS and DFS
 print("bfs : ", end="")
 path, visited = bfs(graph, "S", "G")
 print(path)

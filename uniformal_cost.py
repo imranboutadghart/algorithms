@@ -40,4 +40,4 @@ def ucs(graph, start, end):
 	return path[::-1], list(visited.keys())
 
 path, visited = ucs(graph, 'A', 'F')
-print(path, visited)
+print("path found: ", path, "\nvisited node: ", visited)

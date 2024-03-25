@@ -23,35 +23,28 @@ def printboard(board):
 	print("\n", end="")
 
 def alpha_beta(board, isMax: bool, depth = 0):
-	indepth = 9 - board.count(' ')
-	if indepth == 9:
+	if board.count(' ') == 0:
 		return 0
-	board_values = [0 for i in range(9)]
+	if won(board, 'x'): return 1
+	if won(board, 'o'): return -1
+
+	board_values = []
 	fun = max if isMax else min
 	for i in range(9):
 		if board[i] != ' ':
-			board_values[i]= '-'
+			board_values.append(-2 if isMax else 2)
 			continue
-		coe = 1 if isMax else -1
 		player = 'x' if isMax else 'o'
-		if won(board, 'x'):
-			if (isMax): return 1
-			board_values[i] = 1
-		elif won(board, 'o'):
-			if (not isMax): return -1
-			board_values[i] = -1
-		else:
-			tmp = board.copy()
-			tmp[i] = player
-			board_values[i] = alpha_beta(tmp, not isMax, depth + 1)
-			if fun(board_values[i], 0) != 0: return board_values[i]
-	if depth == 0:
-		nboard_values = [i if i != '-' else 10 * - fun(1, -1) for i in board_values]
-		return nboard_values.index(fun(nboard_values))
-	board_values = [i for i in board_values if i != '-']
-	return fun(board_values)
+		tmp = board.copy()
+		tmp[i] = player
+		var = alpha_beta(tmp, not isMax, depth + 1)
+		if fun(var, 0) != 0 : return var
+		board_values.append(var)
+	best = fun(board_values)
+	index = board_values.index(best)
+	return index if depth == 0 else best
 
-for i in range(0, 9):
+for i in range(9):
 	if i % 2 == 0:
 		board[alpha_beta(board, True)] = 'x'
 	else:
